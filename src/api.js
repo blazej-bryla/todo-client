@@ -73,3 +73,20 @@ export const markRealized = async (taskId) => {
     return { success: false, error: err };
   }
 };
+
+export const revertRealized = async (taskId) => {
+  try {
+    const response = await fetch(`${API_URL}/revert`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ taskId }),
+    });
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`${response.status}: ${response.statusText}`);
+    }
+  } catch (err) {
+    return { success: false, error: err };
+  }
+};
