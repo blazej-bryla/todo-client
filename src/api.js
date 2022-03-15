@@ -39,3 +39,20 @@ export const deleteTask = async (taskId) => {
     return { success: false, error: err };
   }
 };
+
+export const modifyTask = async (taskId, newTask) => {
+  try {
+    const response = await fetch(`${API_URL}/task`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ taskId, newTask }),
+    });
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`${response.status}: ${response.statusText}`);
+    }
+  } catch (err) {
+    return { success: false, error: err };
+  }
+};
