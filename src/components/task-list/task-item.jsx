@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
-import { deleteTask, modifyTask } from "../../api";
+import { deleteTask, modifyTask, markRealized } from "../../api";
+import cn from "classnames";
+
 const TaskItem = ({ task, index }) => {
   const taskId = task.id;
   const inputRef = useRef(null);
@@ -19,8 +21,12 @@ const TaskItem = ({ task, index }) => {
     await deleteTask(taskId);
   };
 
+  const realizedOnClick = async() => {
+    await markRealized(taskId);
+  }
+
   return (
-    <div className="w-full flex justify-between">
+    <div className={cn("w-full flex justify-between", task.isRealized ? "bg-green-500" : "")}>
       <span>{index}</span>
       {state ? (
         <input ref={inputRef} />
@@ -37,7 +43,7 @@ const TaskItem = ({ task, index }) => {
       <div className="cursor-pointer" onClick={deleteOnClick}>
         USUŃ
       </div>
-      <div>SKOŃCZONE</div>
+      <div className="cursor-pointer" onClick={realizedOnClick}>SKOŃCZONE</div>
     </div>
   );
 };
