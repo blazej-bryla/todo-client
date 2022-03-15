@@ -20,9 +20,7 @@ export default function Header() {
           <li>
             <Link to="/">Wszystkie {all ? ` – ${all}`: '' }</Link>
           </li>
-          <li>
-            <Link to="/new">Dodaj nowe zadanie</Link>
-          </li>
+         
         </ul>
       </nav>
     </header>

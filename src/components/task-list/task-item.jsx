@@ -18,7 +18,10 @@ const TaskItem = ({ task, index }) => {
   };
 
   const modifyOnClick = async () => {
-    const newTask = inputRef.current.value;
+    let newTask = inputRef.current.value;
+    if (newTask === "") {
+      newTask = task.task;
+    }
     await modifyTask(taskId, newTask);
     setState(!state);
   };
@@ -37,13 +40,17 @@ const TaskItem = ({ task, index }) => {
   return (
     <div
       className={cn(
-        "w-full flex justify-between max-w-[70%] mx-auto border-2 border-black p-4",
+        "w-full flex justify-between items-center max-w-[70%] mx-auto border-2 border-black p-4 group-hover:bg-gray-100 transition-all duration-300",
         task.isRealized ? "bg-green-500" : ""
       )}
     >
       <span>{index + 1}</span>
       {state ? (
-        <input className="w-[50%]" placeholder={task.task} ref={inputRef} />
+        <input
+          className="w-[50%] border p-2 shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          placeholder={task.task}
+          ref={inputRef}
+        />
       ) : (
         <span className="w-[50%]">{task.task}</span>
       )}
