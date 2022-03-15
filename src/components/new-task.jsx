@@ -7,6 +7,7 @@ const states = {
   LOADING: "LOADING",
   ERROR: "ERROR",
   SUCCESS: "SUCCESS",
+  WRONG: "WRITE SOMETHING...",
 };
 
 const NewTask = () => {
@@ -18,15 +19,19 @@ const NewTask = () => {
     const newTask = inputRef.current.value;
 
     setStatus(states.LOADING);
-    const response = await addNewTask({ task: newTask });
-
-    if (response.success) {
-      setStatus(states.SUCCESS);
-      setError(null);
-      inputRef.current.value = "";
+    if (newTask === "") {
+      setStatus(states.WRONG);
     } else {
-      setStatus(states.ERROR);
-      setError(response.error.message);
+      const response = await addNewTask({ task: newTask });
+
+      if (response.success) {
+        setStatus(states.SUCCESS);
+        setError(null);
+        inputRef.current.value = "";
+      } else {
+        setStatus(states.ERROR);
+        setError(response.error.message);
+      }
     }
   };
 
@@ -40,6 +45,8 @@ const NewTask = () => {
         return <span>Ładowanie...</span>;
       case states.IDLE:
         return null;
+      case states.WRONG:
+        return <span>Wpisz coś!</span>;
 
       default:
         return null;
