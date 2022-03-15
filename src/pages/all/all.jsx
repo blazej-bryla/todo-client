@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import Layout from "../../components/layout";
 import { fetchAllTasks } from "../../api";
 import TaskList from "../../components/task-list/task-list";
 import NewTask from "../../components/new-task";
+import DefaultLayout from "../../layouts/default/default-layout";
 
 
 
@@ -20,14 +20,13 @@ const AllMain = () => {
   
 
   return (
-    <main className="flex flex-col gap-4">
+    <DefaultLayout>
+
       <TaskList tasks={tasks} />
 
       <NewTask />
-    </main>
+    </DefaultLayout>
   );
 };
 
-export default function All() {
-  return <Layout main={<AllMain />} />;
-}
+export default AllMain

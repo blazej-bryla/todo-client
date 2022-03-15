@@ -54,7 +54,7 @@ const NewTask = () => {
   };
 
   return (
-    <div className={"flex max-w-[70%] w-full mx-auto  gap-8 items-center"}>
+    <div className={"flex max-w-[70%] w-full mx-auto pt-8 pb-24 gap-8 items-center"}>
       <input
         disabled={status === states.LOADING}
         ref={inputRef}

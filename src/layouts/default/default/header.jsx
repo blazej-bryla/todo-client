@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-import { fetchAllTasks } from "../api";
+import { fetchAllTasks } from "../../../api";
 
 export default function Header() {
     const [all, setAll] = useState(null);
