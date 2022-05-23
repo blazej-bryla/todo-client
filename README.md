@@ -1,7 +1,7 @@
 
 # Todo - Client
 
-Client for my Todo APP based on Todo-List-API.
+Client for my Todo APP based on <a href="https://github.com/blazej-bryla/todo-list-api">Todo-List-API</a>.
 
 
 
