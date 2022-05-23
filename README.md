@@ -31,3 +31,9 @@ Start the server
   npm run start
 ```
 
+
+## Tech Stack
+
+**Client:** React, TailwindCSS
+
+
